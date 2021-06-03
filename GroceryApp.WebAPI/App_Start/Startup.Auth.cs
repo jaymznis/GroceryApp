@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using GroceryApp.WebAPI.Providers;
 using GroceryApp.WebAPI.Models;
+using GroceryApp.Data;
 
 namespace GroceryApp.WebAPI
 {
