@@ -17,7 +17,7 @@ namespace GroceryApp.Data
 
         [ForeignKey(nameof(Recipies))]
         public int RecipieID { get; set; }
-        public virtual Recipies Recipies { get; set }
+        public virtual Recipies Recipies { get; set; }
 
         public double ServingSize { get; set; }
     }
