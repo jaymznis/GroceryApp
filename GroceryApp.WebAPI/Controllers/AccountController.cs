@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using GroceryApp.WebAPI.Models;
 using GroceryApp.WebAPI.Providers;
 using GroceryApp.WebAPI.Results;
+using GroceryApp.Data;
 
 namespace GroceryApp.WebAPI.Controllers
 {

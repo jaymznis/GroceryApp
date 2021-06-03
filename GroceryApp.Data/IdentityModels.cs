@@ -33,6 +33,9 @@ namespace GroceryApp.Data
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<GroceryStores> GroceryStores { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
