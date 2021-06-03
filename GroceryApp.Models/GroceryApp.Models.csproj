@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroceryStoreCreate.cs" />
+    <Compile Include="GroceryStoreDetail.cs" />
+    <Compile Include="GroceryStoreEdit.cs" />
+    <Compile Include="GroceryStoreListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
