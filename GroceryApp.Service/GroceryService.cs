@@ -1,4 +1,5 @@
 ﻿using GroceryApp.Data;
+using GroceryApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace GroceryApp.Service
 {
     public class GroceryService
     {
-        public bool CreateGroceryStore(GroceryCreate model)
+        public bool CreateGroceryStore(GroceryStoreCreate model)
         {
             var entity = new GroceryStores()
             {
@@ -28,7 +29,7 @@ namespace GroceryApp.Service
             }
         }
 
-        public IEnumerable<GroceryListItem> GetGroceryStores()
+        public IEnumerable<GroceryStoreListItem> GetGroceryStores()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -36,9 +37,9 @@ namespace GroceryApp.Service
                     .GroceryStores
                     .Select
                     (
-                        e => new GroceryListItem
+                        e => new GroceryStoreListItem
                         {
-                            GroceryStoreId = e.GroceryStoreID,
+                            GroceryStoreID = e.GroceryStoreID,
                             Name = e.Name,
                             Address = e.Address,
                             Website = e.Website,
@@ -51,33 +52,33 @@ namespace GroceryApp.Service
             }
         }
 
-        public GroceryDetail GetGroceryStoreyById(int id)
+        public GroceryStoreDetail GetGroceryStoreyById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .GroceryStores
                     .Single(e => e.GroceryStoreID == id);
-                return new GroceryDetail
+                return new GroceryStoreDetail
                 {
-                    GroceryStoreId = entity.GroceryStoreID,
+                    GroceryStoreID = entity.GroceryStoreID,
                     Name = entity.Name,
                     Address = entity.Address,
                     Website = entity.Website,
                     PhoneNumber = entity.PhoneNumber,
-                    AppContext = entity.App,
+                    App = entity.App,
                     Hours = entity.Hours
                 };
             }
         }
 
-        public bool UpdateGroceryStore(GroceryEdit model)
+        public bool UpdateGroceryStore(GroceryStoreEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .GroceryStores
-                    .Single(e => e.GroceryStoreID == model.GroceryStoreId);
+                    .Single(e => e.GroceryStoreID == model.GroceryStoreID);
 
                 entity.Name = model.Name;
                 entity.Address = model.Address;
@@ -88,6 +89,20 @@ namespace GroceryApp.Service
 
                 return ctx.SaveChanges() == 1;
 
+            }
+        }
+        public bool DeleteGroceryStore(int groceryStoreId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                   ctx
+                   .GroceryStores
+                   .Single(e => e.GroceryStoreID == groceryStoreId);
+
+                ctx.GroceryStores.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

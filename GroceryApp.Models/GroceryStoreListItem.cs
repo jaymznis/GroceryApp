@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryApp.Models
 {
-    public class GroceryListItem
+    public class GroceryStoreListItem
     {
         public int GroceryStoreID { get; set; }
         public string Name { get; set; }
