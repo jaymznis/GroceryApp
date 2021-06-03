@@ -9,13 +9,6 @@ namespace GroceryApp.Service
 {
     public class GroceryService
     {
-        private readonly Guid _userId;
-
-        public GroceryService(Guid userId)
-        {
-            _userId = userId;
-        }
-
         public bool CreateGroceryStore(GroceryCreate model)
         {
             var entity = new GroceryStores()
@@ -32,6 +25,29 @@ namespace GroceryApp.Service
             {
                 ctx.GroceryStores.Add(entity);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<GroceryListItem> GetGroceryStores()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx
+                    .GroceryStores
+                    .Select
+                    (
+                        e => new GroceryListItem
+                        {
+                            GroceryStoreId = e.GroceryStoreID,
+                            Name = e.Name,
+                            Address = e.Address,
+                            Website = e.Website,
+                            PhoneNumber = e.PhoneNumber,
+                            App = e.App,
+                            Hours = e.Hours
+                        }
+                    );
+                return query.ToArray();
             }
         }
 
@@ -55,6 +71,24 @@ namespace GroceryApp.Service
             }
         }
 
+        public bool UpdateGroceryStore(GroceryEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .GroceryStores
+                    .Single(e => e.GroceryStoreID == model.GroceryStoreId);
 
+                entity.Name = model.Name;
+                entity.Address = model.Address;
+                entity.Website = model.Website;
+                entity.PhoneNumber = model.PhoneNumber;
+                entity.App = model.App;
+                entity.Hours = model.Hours;
+
+                return ctx.SaveChanges() == 1;
+
+            }
+        }
     }
 }
