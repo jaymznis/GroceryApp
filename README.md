@@ -16,9 +16,3 @@ To contribute to this project, follow the instructions for cloning, then commit 
 
 ## Resources
 Project created by James Campbell, Jakob Amstutz, Taylor Fulner
-
-## Contact
-Please reach out with any questions or suggestions.  <notrealinbox@gmail.com>
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
